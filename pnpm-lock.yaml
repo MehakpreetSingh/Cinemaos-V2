@@ -15,11 +15,11 @@ dependencies:
     specifier: ^10.11.1
     version: 10.11.1
   framer-motion:
-    specifier: ^11.1.7
-    version: 11.1.7(react-dom@18.3.1)(react@18.3.1)
+    specifier: ^11.1.8
+    version: 11.1.8(react-dom@18.3.1)(react@18.3.1)
   next:
     specifier: 14.2.3
-    version: 14.2.3(@babel/core@7.24.5)(react-dom@18.3.1)(react@18.3.1)(sass@1.75.0)
+    version: 14.2.3(@babel/core@7.24.5)(react-dom@18.3.1)(react@18.3.1)(sass@1.76.0)
   next-pwa:
     specifier: ^5.6.0
     version: 5.6.0(@babel/core@7.24.5)(next@14.2.3)(webpack@5.91.0)
@@ -33,11 +33,11 @@ dependencies:
     specifier: ^18
     version: 18.3.1(react@18.3.1)
   react-icons:
-    specifier: ^5.1.0
-    version: 5.1.0(react@18.3.1)
+    specifier: ^5.2.0
+    version: 5.2.0(react@18.3.1)
   react-intersection-observer:
-    specifier: ^9.10.1
-    version: 9.10.1(react-dom@18.3.1)(react@18.3.1)
+    specifier: ^9.10.2
+    version: 9.10.2(react-dom@18.3.1)(react@18.3.1)
   react-lazy-load-image-component:
     specifier: ^1.6.0
     version: 1.6.0(react-dom@18.3.1)(react@18.3.1)
@@ -51,8 +51,8 @@ dependencies:
     specifier: ^5.26.4
     version: 5.26.4(react-dom@18.3.1)(react@18.3.1)
   sass:
-    specifier: ^1.75.0
-    version: 1.75.0
+    specifier: ^1.76.0
+    version: 1.76.0
   sonner:
     specifier: ^1.4.41
     version: 1.4.41(react-dom@18.3.1)(react@18.3.1)
@@ -3141,8 +3141,8 @@ packages:
       mime-types: 2.1.35
     dev: false
 
-  /framer-motion@11.1.7(react-dom@18.3.1)(react@18.3.1):
-    resolution: {integrity: sha512-cW11Pu53eDAXUEhv5hEiWuIXWhfkbV32PlgVISn7jRdcAiVrJ1S03YQQ0/DzoswGYYwKi4qYmHHjCzAH52eSdQ==}
+  /framer-motion@11.1.8(react-dom@18.3.1)(react@18.3.1):
+    resolution: {integrity: sha512-W2OGZmNfUarhh6A/rLXernq/JthjekbgeRWqzigPpbaShe/+HfQKUDSjiEdL302XOlINtO+SCFCiR1hlqN3uOA==}
     peerDependencies:
       '@emotion/is-prop-valid': '*'
       react: ^18.0.0
@@ -3786,7 +3786,7 @@ packages:
       babel-loader: 8.3.0(@babel/core@7.24.5)(webpack@5.91.0)
       clean-webpack-plugin: 4.0.0(webpack@5.91.0)
       globby: 11.1.0
-      next: 14.2.3(@babel/core@7.24.5)(react-dom@18.3.1)(react@18.3.1)(sass@1.75.0)
+      next: 14.2.3(@babel/core@7.24.5)(react-dom@18.3.1)(react@18.3.1)(sass@1.76.0)
       terser-webpack-plugin: 5.3.10(webpack@5.91.0)
       workbox-webpack-plugin: 6.6.0(webpack@5.91.0)
       workbox-window: 6.6.0
@@ -3800,7 +3800,7 @@ packages:
       - webpack
     dev: false
 
-  /next@14.2.3(@babel/core@7.24.5)(react-dom@18.3.1)(react@18.3.1)(sass@1.75.0):
+  /next@14.2.3(@babel/core@7.24.5)(react-dom@18.3.1)(react@18.3.1)(sass@1.76.0):
     resolution: {integrity: sha512-dowFkFTR8v79NPJO4QsBUtxv0g9BrS/phluVpMAt2ku7H+cbcBJlopXjkWlwxrk/xGqMemr7JkGPGemPrLLX7A==}
     engines: {node: '>=18.17.0'}
     hasBin: true
@@ -3826,7 +3826,7 @@ packages:
       postcss: 8.4.31
       react: 18.3.1
       react-dom: 18.3.1(react@18.3.1)
-      sass: 1.75.0
+      sass: 1.76.0
       styled-jsx: 5.1.1(@babel/core@7.24.5)(react@18.3.1)
     optionalDependencies:
       '@next/swc-darwin-arm64': 14.2.3
@@ -4078,16 +4078,16 @@ packages:
       scheduler: 0.23.2
     dev: false
 
-  /react-icons@5.1.0(react@18.3.1):
-    resolution: {integrity: sha512-D3zug1270S4hbSlIRJ0CUS97QE1yNNKDjzQe3HqY0aefp2CBn9VgzgES27sRR2gOvFK+0CNx/BW0ggOESp6fqQ==}
+  /react-icons@5.2.0(react@18.3.1):
+    resolution: {integrity: sha512-n52Y7Eb4MgQZHsSZOhSXv1zs2668/hBYKfSRIvKh42yExjyhZu0d1IK2CLLZ3BZB1oo13lDfwx2vOh2z9FTV6Q==}
     peerDependencies:
       react: '*'
     dependencies:
       react: 18.3.1
     dev: false
 
-  /react-intersection-observer@9.10.1(react-dom@18.3.1)(react@18.3.1):
-    resolution: {integrity: sha512-ZseerLEOaZ2FFMtkjNd0RGzxKTiiIBGaXcR5buh3GSgtoInNCztHvCzgu5Gg2I2vUhF/EX1XJn95inZkp/K6xQ==}
+  /react-intersection-observer@9.10.2(react-dom@18.3.1)(react@18.3.1):
+    resolution: {integrity: sha512-j2hGADK2hCbAlfaq6L3tVLb4iqngoN7B1fT16MwJ4J16YW/vWLcmAIinLsw0lgpZeMi4UDUWtHC9QDde0/P1yQ==}
     peerDependencies:
       react: ^15.0.0 || ^16.0.0 || ^17.0.0 || ^18.0.0 || ^19.0.0
       react-dom: ^15.0.0 || ^16.0.0 || ^17.0.0 || ^18.0.0 || ^19.0.0
@@ -4289,8 +4289,8 @@ packages:
       is-regex: 1.1.4
     dev: false
 
-  /sass@1.75.0:
-    resolution: {integrity: sha512-ShMYi3WkrDWxExyxSZPst4/okE9ts46xZmJDSawJQrnte7M1V9fScVB+uNXOVKRBt0PggHOwoZcn8mYX4trnBw==}
+  /sass@1.76.0:
+    resolution: {integrity: sha512-nc3LeqvF2FNW5xGF1zxZifdW3ffIz5aBb7I7tSvOoNu7z1RQ6pFt9MBuiPtjgaI62YWrM/txjWlOCFiGtf2xpw==}
     engines: {node: '>=14.0.0'}
     hasBin: true
     dependencies:
