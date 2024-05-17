@@ -14,6 +14,24 @@
       width: 10rem;
     }
   }
+
+  h1 {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    div {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 1rem;
+      font-size: 0.8rem;
+      svg {
+        font-size: 1.5rem;
+        cursor: pointer;
+      }
+    }
+  }
   // h1{
   //   height: 3ch;
   //   margin-top: 3rem;
@@ -31,6 +49,11 @@
       .loading {
         height: 10rem;
         width: 7rem;
+      }
+    }
+    h1 {
+      div {
+        display: none;
       }
     }
   }
