@@ -8,6 +8,7 @@ import { FaForwardStep, FaBackwardStep } from "react-icons/fa6";
 import { BsHddStack, BsHddStackFill } from "react-icons/bs";
 import axiosFetch from "@/Utils/fetchBackend";
 import WatchDetails from "@/components/WatchDetails";
+import Player from "@/components/Artplayer";
 
 const Watch = () => {
   const params = useSearchParams();
@@ -26,6 +27,10 @@ const Watch = () => {
   const [data, setdata] = useState<any>();
   const [seasondata, setseasonData] = useState<any>();
   const [source, setSource] = useState("SUP");
+  const [embedMode, setEmbedMode] = useState<any>();
+  const [nonEmbedURL, setNonEmbedURL] = useState<any>("");
+  const [nonEmbedSources, setNonEmbedSources] = useState<any>("");
+  const [nonEmbedCaptions, setnonEmbedCaptions] = useState<any>();
   const nextBtn: any = useRef(null);
   const backBtn: any = useRef(null);
   const moreBtn: any = useRef(null);
@@ -37,6 +42,16 @@ const Watch = () => {
     setEpisode(params.get("episode"));
 
   useEffect(() => {
+    if (
+      localStorage.getItem("RiveStreamEmbedMode") !== undefined &&
+      localStorage.getItem("RiveStreamEmbedMode") !== null
+    )
+      setEmbedMode(
+        JSON.parse(localStorage.getItem("RiveStreamEmbedMode") || "false"),
+      );
+    else setEmbedMode(false);
+    const latestAgg: any = localStorage.getItem("RiveStreamLatestAgg");
+    if (latestAgg !== null && latestAgg !== undefined) setSource(latestAgg);
     setLoading(true);
     setType(params.get("type"));
     setId(params.get("id"));
@@ -98,48 +113,93 @@ const Watch = () => {
   }, [params, id, season, episode]);
 
   useEffect(() => {
-    const latestAgg: any = localStorage.getItem("RiveStreamLatestAgg");
-    if (latestAgg !== null || latestAgg !== undefined) setSource(latestAgg);
-    toast.info(
-      <div>
-        Cloud: use AD-Blocker services for AD-free experience, like AD-Blocker
-        extension or{" "}
-        <a target="_blank" href="https://brave.com/">
-          Brave Browser{" "}
-        </a>
-      </div>,
-    );
+    if (embedMode !== undefined && embedMode !== null)
+      localStorage.setItem("RiveStreamEmbedMode", embedMode);
+    if (embedMode === true) {
+      const latestAgg: any = localStorage.getItem("RiveStreamLatestAgg");
+      if (latestAgg !== null && latestAgg !== undefined) setSource(latestAgg);
+      toast.info(
+        <div>
+          Cloud: use AD-Blocker services for AD-free experience, like AD-Blocker
+          extension or{" "}
+          <a target="_blank" href="https://brave.com/">
+            Brave Browser{" "}
+          </a>
+        </div>,
+      );
 
-    toast.info(
-      <div>
-        Cloud: use video downloader extensions like{" "}
-        <a target="_blank" href="https://fetchv.net/">
-          FetchV{" "}
-        </a>{" "}
-        or{" "}
-        <a target="_blank" href="https://www.hlsloader.com/">
-          Stream Recorder{" "}
-        </a>{" "}
-        for PC and{" "}
-        <a
-          target="_blank"
-          href="https://play.google.com/store/apps/details?id=videoplayer.videodownloader.downloader"
-        >
-          AVDP{" "}
-        </a>{" "}
-        for Android, to download movies/tv shows. Refer{" "}
-        <a
-          target="_blank"
-          href="https://www.reddit.com/r/DataHoarder/comments/qgne3i/how_to_download_videos_from_vidsrcme/"
-        >
-          The Source{" "}
-        </a>
-      </div>,
-    );
+      toast.info(
+        <div>
+          Cloud: use video downloader extensions like{" "}
+          <a target="_blank" href="https://fetchv.net/">
+            FetchV{" "}
+          </a>{" "}
+          or{" "}
+          <a target="_blank" href="https://www.hlsloader.com/">
+            Stream Recorder{" "}
+          </a>{" "}
+          for PC and{" "}
+          <a
+            target="_blank"
+            href="https://play.google.com/store/apps/details?id=videoplayer.videodownloader.downloader"
+          >
+            AVDP{" "}
+          </a>{" "}
+          for Android, to download movies/tv shows. Refer{" "}
+          <a
+            target="_blank"
+            href="https://www.reddit.com/r/DataHoarder/comments/qgne3i/how_to_download_videos_from_vidsrcme/"
+          >
+            The Source{" "}
+          </a>
+        </div>,
+      );
+    }
     // window.addEventListener("keydown", (event) => {
     //   console.log("Key pressed:", event.key);
     // });
-  }, []);
+  }, [embedMode]);
+
+  useEffect(() => {
+    let autoEmbedMode: NodeJS.Timeout;
+    if (embedMode === false && id !== undefined && id !== null) {
+      const provider = process.env.NEXT_PUBLIC_PROVIDER_URL;
+      fetch(
+        type === "movie"
+          ? `${provider}/${id}`
+          : `${provider}/${id}/${season}/${episode}`,
+      )
+        .then((req) => req.json())
+        .then((res: any) => {
+          res.sources.map((ele: any) => {
+            if (typeof ele === "object" && ele !== null) {
+              fetch(ele.url)
+                .then((i) => i.text())
+                .then((r) => {
+                  setNonEmbedURL(ele.url);
+                  clearTimeout(autoEmbedMode);
+                })
+                .catch((err: any) => {
+                  autoEmbedMode = setTimeout(() => {
+                    setEmbedMode(true);
+                  }, 10000);
+                });
+            } else {
+              autoEmbedMode = setTimeout(() => {
+                setEmbedMode(true);
+              }, 10000);
+            }
+          });
+          setNonEmbedSources(res?.sources);
+          setnonEmbedCaptions(res?.captions);
+        })
+        .catch((err: any) => {
+          console.error(err);
+          setEmbedMode(true);
+        });
+      // if (nonEmbedURl === "") setEmbedMode(true);
+    }
+  }, [params, id, season, episode, embedMode]);
   // useEffect(() => {
   //   setTimeout(() => {
   //     console.log({ id });
@@ -262,33 +322,86 @@ const Watch = () => {
           setWatchDetails={setWatchDetails}
         />
       )}
-      <select
-        name="source"
-        id="source"
-        className={styles.source}
-        value={source}
-        onChange={(e) => {
-          setSource(e.target.value);
-          localStorage.setItem("RiveStreamLatestAgg", e.target.value);
-        }}
-      >
-        <option value="AGG">Aggregator : 1 (Multi-Server)</option>
-        <option value="VID">Aggregator : 2 (Vidsrc)</option>
-        <option value="PRO">Aggregator : 3 (Best-Server)</option>
-        <option value="EMB">Aggregator : 4</option>
-        <option value="MULTI">Aggregator : 5 (Fast-Server)</option>
-        <option value="SUP" defaultChecked>
-          Aggregator : 6 (Multi/Most-Server)
-        </option>
-        <option value="CLUB">Aggregator : 7 </option>
-        <option value="SMASH">Aggregator : 8</option>
-        <option value="ONE">Aggregator : 9</option>
-        <option value="ANY">Aggregator : 10 (Multi-Server)</option>
-        <option value="WEB">Aggregator : 11 (Ad-Free)</option>
-      </select>
-      <div className={`${styles.loader} skeleton`}></div>
+      <div className={styles.watchSelects}>
+        {embedMode === true && (
+          <select
+            name="source"
+            id="source"
+            aria-placeholder="servers"
+            className={styles.source}
+            value={source}
+            onChange={(e) => {
+              setSource(e.target.value);
+              localStorage.setItem("RiveStreamLatestAgg", e.target.value);
+            }}
+          >
+            <option value="AGG">Aggregator : 1 (Multi-Server)</option>
+            <option value="VID">Aggregator : 2 (Vidsrc)</option>
+            <option value="PRO">Aggregator : 3 (Best-Server)</option>
+            <option value="EMB">Aggregator : 4</option>
+            <option value="MULTI">Aggregator : 5 (Fast-Server)</option>
+            <option value="SUP" defaultChecked>
+              Aggregator : 6 (Multi/Most-Server)
+            </option>
+            <option value="CLUB">Aggregator : 7 </option>
+            <option value="SMASH">Aggregator : 8</option>
+            <option value="ONE">Aggregator : 9</option>
+            <option value="ANY">Aggregator : 10 (Multi-Server)</option>
+            <option value="WEB">Aggregator : 11 (Ad-Free)</option>
+          </select>
+        )}
 
-      {source === "AGG" && id !== "" && id !== null ? (
+        {embedMode === false && (
+          <select
+            name="embedModesource"
+            id="embedModesource"
+            className={styles.embedMode}
+            value={nonEmbedURL}
+            onChange={(e) => {
+              setNonEmbedURL(e.target.value);
+            }}
+            aria-placeholder="servers"
+          >
+            <option value="" disabled selected>
+              servers
+            </option>
+            {nonEmbedSources?.length > 0 &&
+              nonEmbedSources?.map((ele: any) => {
+                if (typeof ele === "object" && ele !== null) {
+                  return (
+                    <option value={ele?.url}>
+                      {ele?.source} ({ele?.lang})
+                    </option>
+                  );
+                }
+              })}
+          </select>
+        )}
+        <select
+          name="embedMode"
+          id="embedMode"
+          className={styles.embedMode}
+          value={embedMode}
+          onChange={(e) => {
+            setEmbedMode(JSON.parse(e.target.value));
+            localStorage.setItem("RiveStreamEmbedMode", e.target.value);
+          }}
+        >
+          <option value="true">Embed Mode</option>
+          <option value="false">NON Embed Mode (AD-free)</option>
+        </select>
+      </div>
+      <div className={`${styles.loader} skeleton`}>Loading</div>
+      {embedMode === false && nonEmbedURL !== "" && (
+        <Player
+          option={{
+            url: nonEmbedURL,
+          }}
+          captions={nonEmbedCaptions}
+          className={styles.videoPlayer}
+        />
+      )}
+      {source === "AGG" && id !== "" && id !== null && embedMode === true ? (
         <iframe
           scrolling="no"
           src={
@@ -303,7 +416,7 @@ const Watch = () => {
         ></iframe>
       ) : null}
 
-      {source === "VID" && id !== "" && id !== null ? (
+      {source === "VID" && id !== "" && id !== null && embedMode === true ? (
         <iframe
           scrolling="no"
           src={
@@ -318,7 +431,7 @@ const Watch = () => {
         ></iframe>
       ) : null}
 
-      {source === "PRO" && id !== "" && id !== null ? (
+      {source === "PRO" && id !== "" && id !== null && embedMode === true ? (
         <iframe
           scrolling="no"
           src={
@@ -333,7 +446,7 @@ const Watch = () => {
         ></iframe>
       ) : null}
 
-      {source === "EMB" && id !== "" && id !== null ? (
+      {source === "EMB" && id !== "" && id !== null && embedMode === true ? (
         <iframe
           scrolling="no"
           src={
@@ -348,7 +461,7 @@ const Watch = () => {
         ></iframe>
       ) : null}
 
-      {source === "MULTI" && id !== "" && id !== null ? (
+      {source === "MULTI" && id !== "" && id !== null && embedMode === true ? (
         <iframe
           scrolling="no"
           src={
@@ -363,7 +476,7 @@ const Watch = () => {
         ></iframe>
       ) : null}
 
-      {source === "SUP" && id !== "" && id !== null ? (
+      {source === "SUP" && id !== "" && id !== null && embedMode === true ? (
         <iframe
           scrolling="no"
           src={
@@ -378,7 +491,7 @@ const Watch = () => {
         ></iframe>
       ) : null}
 
-      {source === "CLUB" && id !== "" && id !== null ? (
+      {source === "CLUB" && id !== "" && id !== null && embedMode === true ? (
         <iframe
           scrolling="no"
           src={
@@ -393,7 +506,7 @@ const Watch = () => {
         ></iframe>
       ) : null}
 
-      {source === "SMASH" && id !== "" && id !== null ? (
+      {source === "SMASH" && id !== "" && id !== null && embedMode === true ? (
         <iframe
           scrolling="no"
           src={
@@ -408,7 +521,7 @@ const Watch = () => {
         ></iframe>
       ) : null}
 
-      {source === "ONE" && id !== "" && id !== null ? (
+      {source === "ONE" && id !== "" && id !== null && embedMode === true ? (
         <iframe
           scrolling="no"
           src={
@@ -423,7 +536,7 @@ const Watch = () => {
         ></iframe>
       ) : null}
 
-      {source === "ANY" && id !== "" && id !== null ? (
+      {source === "ANY" && id !== "" && id !== null && embedMode === true ? (
         <iframe
           scrolling="no"
           src={
@@ -438,7 +551,7 @@ const Watch = () => {
         ></iframe>
       ) : null}
 
-      {source === "WEB" && id !== "" && id !== null ? (
+      {source === "WEB" && id !== "" && id !== null && embedMode === true ? (
         <iframe
           scrolling="no"
           src={

@@ -10,6 +10,11 @@
     width: 100vw;
     position: absolute;
     z-index: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2rem;
+    color: var(--primary-3);
   }
   .iframe {
     height: 100%;
@@ -22,10 +27,19 @@
       display: none !important;
     }
   }
-  .source {
+  .watchSelects {
     position: absolute;
-    top: 0rem;
-    width: clamp(15rem, 50vw, 20rem);
+    top: -0.2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+  }
+  .source,
+  .embedMode {
+    // position: absolute;
+    // top: 0rem;
+    width: clamp(10rem, 50vw, 20rem);
     padding: 1rem 2rem;
     background: var(--bg-color);
     color: var(--primary-3);
@@ -39,6 +53,9 @@
     // &[selected="true"]{
     //   color: var(--ascent-color);
     // }
+  }
+  .embedMode {
+    width: clamp(10rem, 50vw, 15rem);
   }
   .backBtn {
     position: absolute;
@@ -77,6 +94,11 @@
       opacity: 1;
     }
   }
+  .videoPlayer {
+    height: 100vh;
+    width: 100vw;
+    z-index: 0;
+  }
 }
 
 @media (max-width: 769px) {
@@ -93,6 +115,16 @@
     :where(.backBtn, .episodeControl) svg {
       margin-top: 1rem;
       font-size: 1.3rem;
+    }
+    .watchSelects {
+      gap: 0.5rem;
+    }
+    .embedMode {
+      width: clamp(5rem, 40vw, 15rem);
+    }
+    .videoPlayer {
+      height: 80vh;
+      width: 100vw;
     }
   }
 }
