@@ -24,6 +24,7 @@ const Watch = () => {
   const [loading, setLoading] = useState(true);
   const [watchDetails, setWatchDetails] = useState(false);
   const [data, setdata] = useState<any>();
+  const [seasondata, setseasonData] = useState<any>();
   const [source, setSource] = useState("SUP");
   const nextBtn: any = useRef(null);
   const backBtn: any = useRef(null);
@@ -51,6 +52,7 @@ const Watch = () => {
         id: id,
         season: season,
       });
+      setseasonData(seasonData);
       seasonData?.episodes?.length > 0 &&
         setMaxEpisodes(
           seasonData?.episodes[seasonData?.episodes?.length - 1]
@@ -94,7 +96,10 @@ const Watch = () => {
       window.removeEventListener("keydown", handleKeyDown);
     };
   }, [params, id, season, episode]);
+
   useEffect(() => {
+    const latestAgg: any = localStorage.getItem("RiveStreamLatestAgg");
+    if (latestAgg !== null || latestAgg !== undefined) setSource(latestAgg);
     toast.info(
       <div>
         Cloud: use AD-Blocker services for AD-free experience, like AD-Blocker
@@ -175,6 +180,11 @@ const Watch = () => {
   const STREAM_URL_EMB = process.env.NEXT_PUBLIC_STREAM_URL_EMB;
   const STREAM_URL_MULTI = process.env.NEXT_PUBLIC_STREAM_URL_MULTI;
   const STREAM_URL_SUP = process.env.NEXT_PUBLIC_STREAM_URL_SUP;
+  const STREAM_URL_CLUB = process.env.NEXT_PUBLIC_STREAM_URL_CLUB;
+  const STREAM_URL_SMASH = process.env.NEXT_PUBLIC_STREAM_URL_SMASH;
+  const STREAM_URL_ONE = process.env.NEXT_PUBLIC_STREAM_URL_ONE;
+  const STREAM_URL_ANY = process.env.NEXT_PUBLIC_STREAM_URL_ANY;
+  const STREAM_URL_WEB = process.env.NEXT_PUBLIC_STREAM_URL_WEB;
 
   return (
     <div className={styles.watch}>
@@ -257,16 +267,24 @@ const Watch = () => {
         id="source"
         className={styles.source}
         value={source}
-        onChange={(e) => setSource(e.target.value)}
+        onChange={(e) => {
+          setSource(e.target.value);
+          localStorage.setItem("RiveStreamLatestAgg", e.target.value);
+        }}
       >
         <option value="AGG">Aggregator : 1 (Multi-Server)</option>
-        <option value="VID">Aggregator : 2 (Best-Server)</option>
-        <option value="PRO">Aggregator : 3 (HQ-Server)</option>
+        <option value="VID">Aggregator : 2 (Vidsrc)</option>
+        <option value="PRO">Aggregator : 3 (Best-Server)</option>
         <option value="EMB">Aggregator : 4</option>
         <option value="MULTI">Aggregator : 5 (Fast-Server)</option>
         <option value="SUP" defaultChecked>
           Aggregator : 6 (Multi/Most-Server)
         </option>
+        <option value="CLUB">Aggregator : 7 </option>
+        <option value="SMASH">Aggregator : 8</option>
+        <option value="ONE">Aggregator : 9</option>
+        <option value="ANY">Aggregator : 10 (Multi-Server)</option>
+        <option value="WEB">Aggregator : 11 (Ad-Free)</option>
       </select>
       <div className={`${styles.loader} skeleton`}></div>
 
@@ -280,6 +298,8 @@ const Watch = () => {
           }
           className={styles.iframe}
           allowFullScreen
+          allow="accelerometer; autoplay; encrypted-media; gyroscope;"
+          referrerPolicy="origin"
         ></iframe>
       ) : null}
 
@@ -293,6 +313,8 @@ const Watch = () => {
           }
           className={styles.iframe}
           allowFullScreen
+          allow="accelerometer; autoplay; encrypted-media; gyroscope;"
+          referrerPolicy="origin"
         ></iframe>
       ) : null}
 
@@ -306,6 +328,8 @@ const Watch = () => {
           }
           className={styles.iframe}
           allowFullScreen
+          allow="accelerometer; autoplay; encrypted-media; gyroscope;"
+          referrerPolicy="origin"
         ></iframe>
       ) : null}
 
@@ -319,6 +343,8 @@ const Watch = () => {
           }
           className={styles.iframe}
           allowFullScreen
+          allow="accelerometer; autoplay; encrypted-media; gyroscope;"
+          referrerPolicy="origin"
         ></iframe>
       ) : null}
 
@@ -332,6 +358,8 @@ const Watch = () => {
           }
           className={styles.iframe}
           allowFullScreen
+          allow="accelerometer; autoplay; encrypted-media; gyroscope;"
+          referrerPolicy="origin"
         ></iframe>
       ) : null}
 
@@ -345,6 +373,85 @@ const Watch = () => {
           }
           className={styles.iframe}
           allowFullScreen
+          allow="accelerometer; autoplay; encrypted-media; gyroscope;"
+          referrerPolicy="origin"
+        ></iframe>
+      ) : null}
+
+      {source === "CLUB" && id !== "" && id !== null ? (
+        <iframe
+          scrolling="no"
+          src={
+            type === "movie"
+              ? `${STREAM_URL_CLUB}/movie/${id}`
+              : `${STREAM_URL_CLUB}/tv/${id}-${season}-${episode}`
+          }
+          className={styles.iframe}
+          allowFullScreen
+          allow="accelerometer; autoplay; encrypted-media; gyroscope;"
+          referrerPolicy="origin"
+        ></iframe>
+      ) : null}
+
+      {source === "SMASH" && id !== "" && id !== null ? (
+        <iframe
+          scrolling="no"
+          src={
+            type === "movie"
+              ? `${STREAM_URL_SMASH}?tmdb=${id}`
+              : `${STREAM_URL_SMASH}?tmdb=${id}&season=${season}&episode=${episode}`
+          }
+          className={styles.iframe}
+          allowFullScreen
+          allow="accelerometer; autoplay; encrypted-media; gyroscope;"
+          referrerPolicy="origin"
+        ></iframe>
+      ) : null}
+
+      {source === "ONE" && id !== "" && id !== null ? (
+        <iframe
+          scrolling="no"
+          src={
+            type === "movie"
+              ? `${STREAM_URL_ONE}/movie/${id}/watch`
+              : `${STREAM_URL_ONE}/tv/${id}/watch?season=${season}&episode=${episode}`
+          }
+          className={styles.iframe}
+          allowFullScreen
+          allow="accelerometer; autoplay; encrypted-media; gyroscope;"
+          referrerPolicy="origin"
+        ></iframe>
+      ) : null}
+
+      {source === "ANY" && id !== "" && id !== null ? (
+        <iframe
+          scrolling="no"
+          src={
+            type === "movie"
+              ? `${STREAM_URL_ANY}/movie/${id}`
+              : `${STREAM_URL_ANY}/tv/${id}/${season}/${episode}`
+          }
+          className={styles.iframe}
+          allowFullScreen
+          allow="accelerometer; autoplay; encrypted-media; gyroscope;"
+          referrerPolicy="origin"
+        ></iframe>
+      ) : null}
+
+      {source === "WEB" && id !== "" && id !== null ? (
+        <iframe
+          scrolling="no"
+          src={
+            type === "movie"
+              ? `${STREAM_URL_WEB}/media/tmdb-movie-${id}`
+              : seasondata?.episodes?.length > 0
+                ? `${STREAM_URL_WEB}/media/tmdb-tv-${id}/${seasondata.id}/${seasondata.episodes[Math.abs(episode - seasondata.episodes[0].episode_number)].id}`
+                : `${STREAM_URL_WEB}/media/tmdb-tv-${id}`
+          }
+          className={styles.iframe}
+          allowFullScreen
+          allow="accelerometer; autoplay; encrypted-media; gyroscope;"
+          referrerPolicy="origin"
         ></iframe>
       ) : null}
     </div>
