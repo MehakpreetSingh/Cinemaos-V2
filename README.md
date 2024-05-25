@@ -47,11 +47,13 @@ Rive is a cutting-edge platform for streaming movies and TV shows online. Our pr
 - Provides extensive customization options within **settings**.
 - Features a user-friendly and **visually appealing UI**.
 - **`Ad-Free Streaming/Download`**: Leverages scrapers for ad-free streaming and downloading.
-- **`Embed Mode`**: For unavailable media (movies/shows), supports embed mode streaming.
+- **`Embed Mode`**: For unavailable media (movies/shows), supports embed mode streaming, may contain ads.
 
 ## **Word From Developer**:
 
 > [!TIP]
+>
+> **_In Embed Mode_**
 >
 > 1. **For Ad-Free Experience**: Use ad-blocker services, like AdBlocker extensions([Ghostery](https://www.ghostery.com/)) or [Brave Browser](https://brave.com/).
 > 2. **For Movie/TV Shows Download**:
