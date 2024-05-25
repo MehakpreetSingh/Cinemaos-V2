@@ -46,7 +46,8 @@ Rive is a cutting-edge platform for streaming movies and TV shows online. Our pr
 - Implements a client-side caching system utilizing **session storage**.
 - Provides extensive customization options within **settings**.
 - Features a user-friendly and **visually appealing UI**.
-- **Ad-Free Streaming/Download**: Leverages scrapers for ad-free streaming and downloading. For unavailable media (movies/shows), supports embed mode streaming.
+- **`Ad-Free Streaming/Download`**: Leverages scrapers for ad-free streaming and downloading.
+- **`Embed Mode`**: For unavailable media (movies/shows), supports embed mode streaming.
 
 ## **Word From Developer**:
 

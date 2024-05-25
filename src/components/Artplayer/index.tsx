@@ -38,6 +38,7 @@ export default function Player({
         url: ele?.file,
       };
     });
+    Artplayer.MOBILE_CLICK_PLAY = true;
     const art = new Artplayer({
       ...option,
       container: artRef.current,
@@ -60,23 +61,24 @@ export default function Player({
       customType: {
         m3u8: playM3u8,
       },
-      controls: [
-        {
-          position: "right",
-          html: "Download",
-          width: 250,
-          icon: '<img src="/images/logo512.svg" alt="download"/>',
-          tooltip: "Download HLS (mediatools)",
-          style: {
-            color: "var(--ascent-color)",
-          },
-          click: function () {
-            window.open(
-              `https://mediatools.cc/hlsDownloader?query=${option.url}`,
-            );
-          },
-        },
-      ],
+      // controls: [
+      //   {
+      //     position: "right",
+      //     html: "Download",
+      //     width: 250,
+      //     icon: '<img src="/images/logo512.svg" alt="download"/>',
+      //     tooltip: "Download HLS (mediatools)",
+      //     style: {
+      //       color: "var(--ascent-color)",
+      //       width:"clamp(0,10%,250px)"
+      //     },
+      //     click: function () {
+      //       window.open(
+      //         `https://mediatools.cc/hlsDownloader?query=${option.url}`,
+      //       );
+      //     },
+      //   },
+      // ],
       settings: [
         {
           html: "Subtitle",
@@ -123,7 +125,7 @@ export default function Player({
       plugins: [
         artplayerPluginHlsQuality({
           // Show quality in control
-          control: true,
+          // control: true,
 
           // Show quality in setting
           setting: true,
