@@ -44,10 +44,14 @@ Steps to get TMDB API KEY
 ```.env
 NEXT_PUBLIC_STREAM_URL_AGG=
 NEXT_PUBLIC_STREAM_URL_VID=
-NEXT_PUBLIC_STREAM_URL_PRO=
 NEXT_PUBLIC_STREAM_URL_EMB=
 NEXT_PUBLIC_STREAM_URL_MULTI=
 NEXT_PUBLIC_STREAM_URL_SUP=
+NEXT_PUBLIC_STREAM_URL_CLUB=
+NEXT_PUBLIC_STREAM_URL_SMASH=
+NEXT_PUBLIC_STREAM_URL_ONE=
+NEXT_PUBLIC_STREAM_URL_ANY=
+NEXT_PUBLIC_STREAM_URL_WEB=
 ```
 
 These are all the different streaming services used, that can't be disclosed directly.  
@@ -61,6 +65,14 @@ You can do some research over internet using this quote to get the services.
 And if you are going to create your own website, then I would recommend to go through [github-issue](https://github.com/AdvithGopinath/LetMeWatch/issues/4).  
 They have created a list of services, but some may have stopped working, still you will get working ones also.  
 If you do some researching, then you will find the right services here.
+
+## 4. Vidsrc Scrapper API
+
+```.env
+NEXT_PUBLIC_PROVIDER_URL=
+```
+
+You can find the api, if you search for **vidsrc scrappers**, here we are using a 3rd party API(not ours) which scrapes vidsrc.to and vidsrc.me
 
 If there are anymore env vars left, give them any random values, as they were used in dev only and not in prod.
 
