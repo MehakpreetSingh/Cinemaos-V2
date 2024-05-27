@@ -56,7 +56,7 @@ export default async function axiosFetch({
     tvData: `${baseURL}?id=${id}&requestID=tvData&language=${language}`,
     personData: `${baseURL}?id=${id}&requestID=personData&language=${language}`,
     movieVideos: `${baseURL}?id=${id}&requestID=movieVideos&language=${language}`,
-    tvVideos: `${baseURL}?id=${id}/&?requestID=tvVideos&language=${language}`,
+    tvVideos: `${baseURL}?id=${id}&?requestID=tvVideos&language=${language}`,
     movieImages: `${baseURL}?id=${id}&requestID=movieImages`,
     tvImages: `${baseURL}?id=${id}&requestID=tvImages`,
     personImages: `${baseURL}?id=${id}&requestID=personImages`,
@@ -94,8 +94,8 @@ export default async function axiosFetch({
 
   // client side caching
   const cacheKey = final_request;
-  const cachedResult = getCache(cacheKey);
-  if (cachedResult) {
+  const cachedResult = await getCache(cacheKey);
+  if (cachedResult && cachedResult !== null && cachedResult !== undefined) {
     return await cachedResult;
   }
 

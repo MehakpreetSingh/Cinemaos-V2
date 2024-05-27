@@ -86,12 +86,12 @@ const SearchPage = ({ categoryType }: any) => {
     const debounceSearch = () => {
       clearTimeout(debounceTimer);
       debounceTimer = setTimeout(() => {
-        if (query.length >= 3) {
+        if (query.length >= 2) {
           fetchData(true);
         }
       }, 600);
     };
-    if (query?.length > 2) debounceSearch();
+    if (query?.length > 1) debounceSearch();
     if (query?.length === 0) fetchData(false);
     return () => clearTimeout(debounceTimer);
   }, [query, currentPage]);
@@ -116,7 +116,7 @@ const SearchPage = ({ categoryType }: any) => {
           className={styles.searchInput}
           value={query}
           onChange={(e) => setQuery(e.target.value)}
-          placeholder="Please enter at least 3 characters to search..."
+          placeholder="Please enter at least 2 characters to search..."
           onFocus={() => setIsSearchBarFocused(true)}
           onBlur={() => setIsSearchBarFocused(false)}
           // data-tooltip-id="tooltip"

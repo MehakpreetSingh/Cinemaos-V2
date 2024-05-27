@@ -172,7 +172,7 @@ const Watch = () => {
         .then((req) => req.json())
         .then((res: any) => {
           res.sources.map((ele: any) => {
-            if (typeof ele === "object" && ele !== null) {
+            if (typeof ele === "object" && ele !== null && ele?.url !== null) {
               fetch(ele.url)
                 .then((i) => i.text())
                 .then((r) => {

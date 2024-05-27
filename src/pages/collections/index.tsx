@@ -122,12 +122,12 @@ const Collections = ({ categoryType }: any) => {
     const debounceSearch = () => {
       clearTimeout(debounceTimer);
       debounceTimer = setTimeout(() => {
-        if (searchQuery.length >= 3) {
+        if (searchQuery.length >= 2) {
           fetchData(true);
         }
       }, 600);
     };
-    if (searchQuery?.length > 2) debounceSearch();
+    if (searchQuery?.length > 1) debounceSearch();
     return () => clearTimeout(debounceTimer);
   }, [searchQuery, currentPage]);
 
@@ -141,7 +141,7 @@ const Collections = ({ categoryType }: any) => {
           className={styles.searchInput}
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
-          placeholder="Please enter at least 3 characters to search collections...."
+          placeholder="Please enter at least 2 characters to search collections...."
           onFocus={() => setIsSearchBarFocused(true)}
           onBlur={() => setIsSearchBarFocused(false)}
           // data-tooltip-id="tooltip"
