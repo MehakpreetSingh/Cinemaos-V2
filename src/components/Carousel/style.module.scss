@@ -27,6 +27,7 @@
 }
 .left,
 .right {
+  display: none;
   font-size: 1.5rem;
   color: var(--ascent-color);
   z-index: 3;

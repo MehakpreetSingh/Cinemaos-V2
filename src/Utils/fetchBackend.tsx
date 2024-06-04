@@ -95,7 +95,12 @@ export default async function axiosFetch({
   // client side caching
   const cacheKey = final_request;
   const cachedResult = await getCache(cacheKey);
-  if (cachedResult && cachedResult !== null && cachedResult !== undefined) {
+  if (
+    cachedResult &&
+    cachedResult !== null &&
+    cachedResult !== undefined &&
+    cachedResult !== ""
+  ) {
     return await cachedResult;
   }
 
