@@ -4,19 +4,19 @@
 <div align="center">
 <p>
 
-<image src="./public/images/logo.png" height="300"/>
+<image src="./public/images/logoSq.png" height="300"/>
 </p>
-Your Personal Streaming Oasis
+Your Personal Streaming Hub
 </div>
 
 <p align="center">
-  <img align="center" src="https://readme-typing-svg.herokuapp.com?color=%23${textVal}&lines=+👋🏻+Welcome+to+Rive+👋🏻;🌐+Stream+Movies+and+Tv+Shows+🌐;👨🏻‍💻+Lets+Build+Together+👩🏻‍💻;💡+Download+Our+App!+💡;🌐+Check+our+website+🌐;🙏🏻+Thanks+for+Contributing+🙏🏻"
+  <img align="center" src="https://readme-typing-svg.herokuapp.com?color=%23${textVal}&lines=+👋🏻+Welcome+to+Cinemaos+👋🏻;🌐+Stream+Movies+and+Tv+Shows+🌐;👨🏻‍💻+Lets+Build+Together+👩🏻‍💻;💡+Download+Our+App!+💡;🌐+Check+our+website+🌐;🙏🏻+Thanks+for+Contributing+🙏🏻"
  <img src= 'https://capsule-render.vercel.app/api?type=rect&color=gradient&height=2.5'/>
 </p>
 
 # **_Rive_**
 
-Rive is a cutting-edge platform for streaming movies and TV shows online. Our project utilizes Next.js. Your Personal Streaming Oasis
+Cinemaos is a Fast and easy platform for streaming movies and TV shows online. Our project utilizes Next.js. Your Personal Streaming hub
 
 <div align="left">
  <p>
