@@ -21,12 +21,12 @@ Cinemaos is a Fast and easy platform for streaming movies and TV shows online. O
 <div align="left">
  <p>
 
-![GitHub repo size](https://img.shields.io/github/repo-size/Developabile/rive-next)
-![Github LOC](https://tokei.rs/b1/github/Developabile/rive-next)
-![Github Files](https://tokei.rs/b1/github/Developabile/rive-next?category=files)
+![GitHub repo size](https://img.shields.io/github/repo-size/MehakpreetSingh/Cinemaos-V2)
+![Github LOC](https://tokei.rs/b1/github/MehakpreetSingh/Cinemaos-V2)
+![Github Files](https://tokei.rs/b1/github/MehakpreetSingh/Cinemaos-V2?category=files)
 
-[![CodeQL](https://github.com/Developabile/rive-next/actions/workflows/github-code-scanning/codeql/badge.svg)](https://github.com/Developabile/rive-next/actions/workflows/github-code-scanning/codeql)
-[![Weekly Update TMDB Collections](https://github.com/Developabile/rive-next/actions/workflows/weekly_update.yml/badge.svg)](https://github.com/Developabile/rive-next/actions/workflows/weekly_update.yml)
+[![CodeQL](https://github.com/MehakpreetSingh/Cinemaos-V2/actions/workflows/github-code-scanning/codeql/badge.svg)](https://github.com/MehakpreetSingh/Cinemaos-V2/actions/workflows/github-code-scanning/codeql)
+[![Weekly Update TMDB Collections](https://github.com/MehakpreetSingh/Cinemaos-V2/actions/workflows/weekly_update.yml/badge.svg)](https://github.com/MehakpreetSingh/Cinemaos-V2/actions/workflows/weekly_update.yml)
 
  </p>
 </div>
@@ -100,23 +100,6 @@ Cinemaos is a Fast and easy platform for streaming movies and TV shows online. O
     <img src="https://img.shields.io/badge/node.js-7c3aed?style=for-the-badge&logo=node.js&logoColor=white" alt="react official Website"/>
 </p>
 
-## **Screenshots**
-
-Here are some screenshots on various devices
-
-| Macbook                                                        | iPad                                                | iPhone                                                         |
-| -------------------------------------------------------------- | --------------------------------------------------- | -------------------------------------------------------------- |
-| ![mac](./screenshots/macbook/MacBook%20Pro-1711134363365.jpeg) | ![ipad](./screenshots/ipad/iPad-1711133919085.jpeg) | ![iphone](./screenshots/iphone/iPhone%20SE-1711133892195.jpeg) |
-| ![mac](./screenshots/macbook/MacBook%20Pro-1711134203319.jpeg) | ![ipad](./screenshots/ipad/iPad-1711134203174.jpeg) | ![iphone](./screenshots/iphone/iPhone%20SE-1711134203201.jpeg) |
-| ![mac](./screenshots/macbook/MacBook%20Pro-1711134313758.jpeg) | ![ipad](./screenshots/ipad/iPad-1711134263026.jpeg) | ![iphone](./screenshots/iphone/iPhone%20SE-1711134064713.jpeg) |
-| ![mac](./screenshots/macbook/MacBook%20Pro-1711134020120.jpeg) | ![ipad](./screenshots/ipad/iPad-1711134390880.jpeg) | ![iphone](./screenshots/iphone/iPhone%20SE-1711134412110.jpeg) |
-
-## Star History
-
-<details>
-<summary><b>Click here for more details</b></summary>
-
-[![Star History Chart](https://api.star-history.com/svg?repos=Developabile/rive-next&type=Date)](https://star-history.com/#Developabile/rive-next&Date)
 
 </details>
 
