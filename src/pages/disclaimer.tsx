@@ -5,12 +5,11 @@ const Disclaimer = () => {
     <div className={`${styles.settingsPage} ${styles.authPage}`}>
       <div className={styles.logo}>
         <img
-          src="/images/logo.svg"
+          src="/images/logoSq.png"
           alt="logo"
           data-tooltip-id="tooltip"
           data-tooltip-content="Rive"
         />
-        <p>Your Personal Streaming Oasis</p>
       </div>
       <div className={styles.settings}>
         <h1>Disclaimer</h1>
