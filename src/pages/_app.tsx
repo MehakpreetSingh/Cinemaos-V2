@@ -35,8 +35,8 @@ export default function App({ Component, pageProps }: any) {
   return (
     <>
       <Head>
-        <title>Rive</title>
-        <meta name="description" content="Your Personal Streaming Oasis" />
+        <title>Cinemaos</title>
+        <meta name="description" content="Your Personal Streaming Hub" />
         <meta
           name="keywords"
           content="movie, streaming, tv, rive, stream. movie app, tv shows, movie download"

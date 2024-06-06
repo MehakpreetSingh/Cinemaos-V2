@@ -51,8 +51,7 @@ const SettingsPage = ({
   return (
     <div className={`${styles.settingsPage} ${styles.authPage}`}>
       <div className={styles.logo}>
-        <img src="/images/logo.svg" alt="logo" />
-        <p>Your Personal Streaming Oasis</p>
+        <img src="/images/logoSq.png" alt="logo" />
       </div>
       <div className={styles.settings}>
         <h1>Account</h1>
@@ -173,14 +172,12 @@ const SettingsPage = ({
           >
             Disclaimer
           </Link>
-          <Link href="mailto:kumarashishranjan4971@hotmail.com">
-            Contact Us
-          </Link>
+          <Link href="mailto:huhululu765@gmail.com">Contact Us</Link>
           {/* <Link href="/contact">Contact Us</Link> */}
         </div>
         <h1>Links</h1>
         <div className={styles.group}>
-          <Link href={"https://github.com/Developabile/rive-next"}>
+          <Link href={""}>
             <FaGithub /> Github
           </Link>
           <Link href={"/"}>

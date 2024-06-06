@@ -4,9 +4,9 @@
   "display": "standalone",
   "scope": "/",
   "start_url": "/",
-  "name": "Rive",
-  "short_name": "Rive",
-  "description": "Your Personal Streaming Oasis.",
+  "name": "Cinemaos",
+  "short_name": "Cinemaos",
+  "description": "Your Personal Streaming Hub",
   "icons": [
     {
       "src": "/icons/icon-192x192.png",
