@@ -406,8 +406,8 @@ const Watch = () => {
           scrolling="no"
           src={
             type === "movie"
-              ? `https://watch.lonelil.ru/watch/movie/${id}`
-              : `https://watch.lonelil.ru/watch/show/${id}.${season}.${episode}`
+              ? `${STREAM_URL_AGG}/embed/${type}/${id}`
+              : `${STREAM_URL_AGG}/embed/${type}/${id}/${season}/${episode}`
           }
           className={styles.iframe}
           allowFullScreen
