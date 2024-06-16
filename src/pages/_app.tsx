@@ -58,6 +58,11 @@ export default function App({ Component, pageProps }: any) {
         {/* <meta name="msapplication-TileColor" content="#f4f7fe" /> */}
         <meta name="msapplication-tap-highlight" content="no" />
         <link rel="shortcut icon" href="/images/logo512.png" />
+        <script
+          async
+          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3701741788853666"
+          crossorigin="anonymous"
+        ></script>
       </Head>
       <Layout>
         <Toaster
