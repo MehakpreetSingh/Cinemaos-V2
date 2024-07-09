@@ -11,8 +11,11 @@ import "react-lazy-load-image-component/src/effects/opacity.css";
 const MovieCardSmall = ({ data, media_type }: any) => {
   const [imageLoading, setImageLoading] = useState(true);
   const [imagePlaceholder, setImagePlaceholder] = useState(false);
-  const local = localStorage.getItem("RiveStreamSettings");
-  const mode = local ? JSON.parse(local).mode : "dark";
+  let mode = "dark"; // Default mode
+  if (typeof window !== "undefined") {
+    const local = localStorage.getItem("RiveStreamSettings");
+    mode = local ? JSON.parse(local).mode : "dark";
+  }
   return (
     <Link
       key={data?.id}

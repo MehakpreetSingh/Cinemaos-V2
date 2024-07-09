@@ -7,7 +7,11 @@ import { getSettings } from "@/Utils/settings";
 const LoginPage = () => {
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
-  const mode = getSettings()?.mode;
+  let mode = "dark"; // Default mode
+  if (typeof window !== "undefined") {
+    const local = localStorage.getItem("RiveStreamSettings");
+    mode = local ? JSON.parse(local).mode : "dark";
+  }
   const { push } = useRouter();
   const handleFormSubmission = async (e: any) => {
     e.preventDefault();

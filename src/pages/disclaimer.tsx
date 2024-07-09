@@ -2,7 +2,11 @@ import styles from "@/styles/Settings.module.scss";
 import { getSettings } from "@/Utils/settings";
 
 const Disclaimer = () => {
-  const mode = getSettings()?.mode;
+  let mode = "dark"; // Default mode
+  if (typeof window !== "undefined") {
+    const local = localStorage.getItem("RiveStreamSettings");
+    mode = local ? JSON.parse(local).mode : "dark";
+  }
   return (
     <div className={`${styles.settingsPage} ${styles.authPage}`}>
       <div className={styles.logo}>

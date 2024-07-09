@@ -2,7 +2,11 @@ import { useState, useEffect } from "react";
 import styles from "@/styles/Settings.module.scss";
 import { getSettings } from "@/Utils/settings";
 const LoginPage = () => {
-  const mode = getSettings()?.mode;
+  let mode = "dark"; // Default mode
+  if (typeof window !== "undefined") {
+    const local = localStorage.getItem("RiveStreamSettings");
+    mode = local ? JSON.parse(local).mode : "dark";
+  }
   const [deferredPrompt, setDeferredPrompt] = useState<any>();
   useEffect(() => {
     window.addEventListener("beforeinstallprompt", (e) => {

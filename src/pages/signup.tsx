@@ -10,7 +10,11 @@ const SignupPage = () => {
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
   const { push } = useRouter();
-  const mode = getSettings()?.mode;
+  let mode = "dark"; // Default mode
+  if (typeof window !== "undefined") {
+    const local = localStorage.getItem("RiveStreamSettings");
+    mode = local ? JSON.parse(local).mode : "dark";
+  }
   const handleFormSubmission = async (e: any) => {
     e.preventDefault();
     if (await signupUserManual({ username, email, password })) {

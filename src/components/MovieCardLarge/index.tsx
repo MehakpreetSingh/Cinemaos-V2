@@ -21,8 +21,11 @@ const MovieCardLarge = ({ data, media_type, genresMovie, genresTv }: any) => {
   const [imagePlaceholder, setImagePlaceholder] = useState(false);
   const year = new Date(data?.release_date).getFullYear();
   const lang = data?.original_language;
-  const local = localStorage.getItem("RiveStreamSettings");
-  const mode = local ? JSON.parse(local).mode : "dark";
+  let mode = "dark"; // Default mode
+  if (typeof window !== "undefined") {
+    const local = localStorage.getItem("RiveStreamSettings");
+    mode = local ? JSON.parse(local).mode : "dark";
+  }
   let Genres: Array<string> = [];
   data?.genre_ids?.map((ele: number) => {
     if (data?.media_type === "movie" || media_type === "movie") {
