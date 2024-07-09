@@ -7,7 +7,7 @@ import Link from "next/link";
 // react-lazy-load-image-component
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import "react-lazy-load-image-component/src/effects/opacity.css";
-const MoviePoster = ({ data, media_type }: any) => {
+const MoviePoster = ({ data, media_type, mode }: any) => {
   const [imageLoading, setImageLoading] = useState(true);
   const [imagePlaceholder, setImagePlaceholder] = useState(false);
   return (
@@ -49,7 +49,7 @@ const MoviePoster = ({ data, media_type }: any) => {
         <LazyLoadImage
           key={data?.id}
           alt={data?.id || "sm"}
-          src={`${imagePlaceholder ? "/images/logo.png" : data?.poster_path !== null && data?.poster_path !== undefined ? process.env.NEXT_PUBLIC_TMBD_IMAGE_URL + data?.poster_path : "/images/logo.svg"}`}
+          src={`${imagePlaceholder ? (mode === "dark" ? "/images/logoWhite.png" : "images/logoBlack.png") : data?.poster_path !== null && data?.poster_path !== undefined ? process.env.NEXT_PUBLIC_TMBD_IMAGE_URL + data?.poster_path : mode === "dark" ? "/images/logoWhite.svg" : "/images/logoBlack.svg"}`}
           height="100%"
           width="100%"
           useIntersectionObserver={true}

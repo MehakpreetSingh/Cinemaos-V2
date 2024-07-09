@@ -18,7 +18,7 @@ function capitalizeFirstLetter(string: string) {
 }
 
 const dummyList = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
-const MetaDetails = ({ id, type, data }: any) => {
+const MetaDetails = ({ id, type, data, mode }: any) => {
   const [category, setCategory] = useState<any>("overview"); // latest, trending, topRated
   const [categoryData, setCategoryData] = useState<any>();
   const [imageLoading, setImageLoading] = useState<any>(true);
@@ -237,7 +237,7 @@ const MetaDetails = ({ id, type, data }: any) => {
                         {/* react-lazy-load-image-component */}
                         <LazyLoadImage
                           key={ele?.id}
-                          src={`${imagePlaceholder ? "/images/logo.svg" : ele?.still_path !== null && ele?.still_path !== undefined ? process.env.NEXT_PUBLIC_TMBD_IMAGE_URL + ele?.still_path : "/images/logo.svg"}`}
+                          src={`${imagePlaceholder ? (mode !== "dark" ? "/images/logoBlack.svg" : "/images/logoWhite.svg") : ele?.still_path !== null && ele?.still_path !== undefined ? process.env.NEXT_PUBLIC_TMBD_IMAGE_URL + ele?.still_path : mode !== "dark" ? "/images/logoBlack.svg" : "/images/logoWhite.svg"}`}
                           height="100%"
                           width="100%"
                           useIntersectionObserver={true}
@@ -466,7 +466,7 @@ const MetaDetails = ({ id, type, data }: any) => {
                         {/* react-lazy-load-image-component */}
                         <LazyLoadImage
                           key={ele?.id}
-                          src={`${imagePlaceholder ? "/images/logo.svg" : ele?.profile_path !== null && ele?.profile_path !== undefined ? process.env.NEXT_PUBLIC_TMBD_IMAGE_URL + ele?.profile_path : "/images/logo.svg"}`}
+                          src={`${imagePlaceholder ? (mode !== "dark" ? "/images/logoBlack.svg" : "/images/logoWhite.svg") : ele?.profile_path !== null && ele?.profile_path !== undefined ? process.env.NEXT_PUBLIC_TMBD_IMAGE_URL + ele?.profile_path : mode !== "dark" ? "/images/logoBlack.svg" : "/images/logoWhite.svg"}`}
                           height="100%"
                           width="100%"
                           useIntersectionObserver={true}
@@ -533,7 +533,7 @@ const MetaDetails = ({ id, type, data }: any) => {
                         {/* react-lazy-load-image-component */}
                         <LazyLoadImage
                           key={ele?.id}
-                          src={`${imagePlaceholder ? "/images/logo.svg" : ele?.profile_path !== null && ele?.profile_path !== undefined ? process.env.NEXT_PUBLIC_TMBD_IMAGE_URL + ele?.profile_path : "/images/logo.svg"}`}
+                          src={`${imagePlaceholder ? (mode !== "dark" ? "/images/logoBlack.svg" : "/images/logoWhite.svg") : ele?.profile_path !== null && ele?.profile_path !== undefined ? process.env.NEXT_PUBLIC_TMBD_IMAGE_URL + ele?.profile_path : mode !== "dark" ? "/images/logoBlack.svg" : "/images/logoWhite.svg"}`}
                           height="100%"
                           width="100%"
                           useIntersectionObserver={true}

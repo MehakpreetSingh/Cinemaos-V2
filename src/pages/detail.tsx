@@ -36,6 +36,7 @@ const DetailPage = () => {
   const [trailer, setTrailer] = useState<any>("");
   const [loading, setLoading] = useState(true);
   const [user, setUser] = useState<any>();
+  const [mode, setMode] = useState<any>("dark");
 
   useEffect(() => {
     setLoading(true);
@@ -43,6 +44,9 @@ const DetailPage = () => {
     setId(params.get("id"));
     setSeason(params.get("season"));
     setEpisode(params.get("episode"));
+    const local = localStorage.getItem("RiveStreamSettings");
+    const mode = local ? JSON.parse(local).mode : "dark";
+    setMode(mode);
     const fetchData = async () => {
       try {
         const data = await axiosFetch({ requestID: `${type}Data`, id: id });
@@ -68,7 +72,10 @@ const DetailPage = () => {
         //     if (i < 10) arr.push(process.env.NEXT_PUBLIC_TMBD_IMAGE_URL + ele.file_path);
         //   });
         // }
-        if (arr.length === 0) arr.push("/images/logo.svg");
+        if (arr.length === 0)
+          arr.push(
+            mode === "dark" ? "/images/logoSq.svg" : "/images/logoSqBlack.svg",
+          );
         setImages(arr);
         setLoading(false);
       } catch (error) {
@@ -80,7 +87,7 @@ const DetailPage = () => {
       // }
     };
     fetchData();
-  }, [params, id]);
+  }, [params, id, mode, setMode]);
 
   useEffect(() => {
     onAuthStateChanged(auth, async (user) => {
@@ -156,7 +163,7 @@ const DetailPage = () => {
             >
               {data?.vote_average?.toFixed(1)}
             </div>
-            <MoviePoster data={data} />
+            <MoviePoster data={data} mode={mode} />
           </div>
           <div className={styles.HomeHeroMeta}>
             <h1
@@ -222,7 +229,7 @@ const DetailPage = () => {
         </div>
       </div>
       <div className={styles.biggerDetail}>
-        <MetaDetails id={id} type={type} data={data} />
+        <MetaDetails id={id} type={type} data={data} mode={mode} />
       </div>
     </div>
   );

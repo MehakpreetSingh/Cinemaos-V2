@@ -19,6 +19,8 @@ const Carousel = ({
   const [imageLoaded, setImageLoaded] = useState(false);
   const [images, setImages] = useState(imageArr);
   const [imagePlaceholder, setImagePlaceholder] = useState(false);
+  const local = localStorage.getItem("RiveStreamSettings");
+  const mode = local ? JSON.parse(local).mode : "dark";
   useEffect(() => {
     document.documentElement.style.setProperty(
       "--carousel-desktop-height",
@@ -45,7 +47,7 @@ const Carousel = ({
   });
   useEffect(() => {
     if (imageArr.length === 0) {
-      setImages(["/images/logo.svg"]);
+      setImages(["/images/logoSq.svg"]);
     } else {
       setImages(imageArr);
     }
@@ -147,7 +149,7 @@ const Carousel = ({
               effect="opacity"
               key={currentIndex}
               alt={"carousel"}
-              src={`${imagePlaceholder ? "/images/logo.svg" : images[currentIndex]}`}
+              src={`${imagePlaceholder ? (mode === "dark" ? "/images/logoSq.svg" : "/images/logoSq-white.svg") : images[currentIndex]}`}
               className={`${!imageLoaded ? "skeleton" : null}`}
               // onLoad={() => {
               //   setImageLoaded(true);

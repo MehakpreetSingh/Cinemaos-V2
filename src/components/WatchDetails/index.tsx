@@ -40,6 +40,8 @@ const WatchDetails = ({
   const [genreListMovie, setGenreListMovie] = useState<any>();
   const [genreListTv, setGenreListTv] = useState<any>();
   const watchDetailsPage: any = useRef(null);
+  const local = localStorage.getItem("RiveStreamSettings");
+  const mode = local ? JSON.parse(local).mode : "dark";
 
   const monthNames = [
     "January",
@@ -229,7 +231,7 @@ const WatchDetails = ({
                         {/* react-lazy-load-image-component */}
                         <LazyLoadImage
                           key={ele?.id}
-                          src={`${imagePlaceholder ? "/images/logo.svg" : ele?.still_path !== null && ele?.still_path !== undefined ? process.env.NEXT_PUBLIC_TMBD_IMAGE_URL + ele?.still_path : "/images/logo.svg"}`}
+                          src={`${imagePlaceholder ? (mode === "dark" ? "/images/logoBlack.svg" : "/images/logoWhite.svg") : ele?.still_path !== null && ele?.still_path !== undefined ? process.env.NEXT_PUBLIC_TMBD_IMAGE_URL + ele?.still_path : mode === "dark" ? "/images/logoBlack.svg" : "/images/logoWhite.svg"}`}
                           height="100%"
                           width="100%"
                           useIntersectionObserver={true}
@@ -340,7 +342,7 @@ const WatchDetails = ({
                         {/* react-lazy-load-image-component */}
                         <LazyLoadImage
                           key={ele?.id}
-                          src={`${imagePlaceholder ? "/images/logo.svg" : ele?.profile_path !== null && ele?.profile_path !== undefined ? process.env.NEXT_PUBLIC_TMBD_IMAGE_URL + ele?.profile_path : "/images/logo.svg"}`}
+                          src={`${imagePlaceholder ? (mode === "dark" ? "/images/logoBlack.svg" : "/images/logoWhite.svg") : ele?.profile_path !== null && ele?.profile_path !== undefined ? process.env.NEXT_PUBLIC_TMBD_IMAGE_URL + ele?.profile_path : mode === "dark" ? "/images/logoBlack.svg" : "/images/logoWhite.svg"}`}
                           height="100%"
                           width="100%"
                           useIntersectionObserver={true}
@@ -420,7 +422,7 @@ const WatchDetails = ({
                         {/* react-lazy-load-image-component */}
                         <LazyLoadImage
                           key={ele?.id}
-                          src={`${imagePlaceholder ? "/images/logo.svg" : ele?.profile_path !== null && ele?.profile_path !== undefined ? process.env.NEXT_PUBLIC_TMBD_IMAGE_URL + ele?.profile_path : "/images/logo.svg"}`}
+                          src={`${imagePlaceholder ? (mode === "dark" ? "/images/logoBlack.svg" : "/images/logoWhite.svg") : ele?.profile_path !== null && ele?.profile_path !== undefined ? process.env.NEXT_PUBLIC_TMBD_IMAGE_URL + ele?.profile_path : mode === "dark" ? "/images/logoBlack.svg" : "/images/logoWhite.svg"}`}
                           height="100%"
                           width="100%"
                           useIntersectionObserver={true}

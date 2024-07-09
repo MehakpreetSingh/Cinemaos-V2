@@ -78,6 +78,8 @@ a {
   color: var(--primary-2);
 }
 .react-loading-skeleton {
+  --bg-color: rgb(27, 25, 25);
+  --primary-1: black;
   --base-color: var(--primary-1) !important;
   --highlight-color: var(--bg-color) !important;
   display: block;

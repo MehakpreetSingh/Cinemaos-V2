@@ -21,6 +21,8 @@ const MovieCardLarge = ({ data, media_type, genresMovie, genresTv }: any) => {
   const [imagePlaceholder, setImagePlaceholder] = useState(false);
   const year = new Date(data?.release_date).getFullYear();
   const lang = data?.original_language;
+  const local = localStorage.getItem("RiveStreamSettings");
+  const mode = local ? JSON.parse(local).mode : "dark";
   let Genres: Array<string> = [];
   data?.genre_ids?.map((ele: number) => {
     if (data?.media_type === "movie" || media_type === "movie") {
@@ -96,7 +98,7 @@ const MovieCardLarge = ({ data, media_type, genresMovie, genresTv }: any) => {
         {/* react-lazy-load-image-component */}
         <LazyLoadImage
           key={data?.id}
-          src={`${imagePlaceholder ? "/images/logoSq.png" : (data?.poster_path !== null && data?.poster_path !== undefined) || (data?.profile_path !== null && data?.profile_path !== undefined) || (data?.still_path !== null && data?.still_path !== undefined) ? process.env.NEXT_PUBLIC_TMBD_IMAGE_URL + (data?.poster_path || data?.profile_path || data?.still_path) || null : "/images/logo.svg"}`}
+          src={`${imagePlaceholder ? (mode === "light" ? "/images/logoSq.png" : "/images/logoSq-white.png") : (data?.poster_path !== null && data?.poster_path !== undefined) || (data?.profile_path !== null && data?.profile_path !== undefined) || (data?.still_path !== null && data?.still_path !== undefined) ? process.env.NEXT_PUBLIC_TMBD_IMAGE_URL + (data?.poster_path || data?.profile_path || data?.still_path) || null : mode === "dark" ? "/images/logoWhite.svg" : "/images/logoBlack.svg"}`}
           height="100%"
           width="100%"
           useIntersectionObserver={true}

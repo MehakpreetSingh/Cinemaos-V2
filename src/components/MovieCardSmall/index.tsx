@@ -11,6 +11,8 @@ import "react-lazy-load-image-component/src/effects/opacity.css";
 const MovieCardSmall = ({ data, media_type }: any) => {
   const [imageLoading, setImageLoading] = useState(true);
   const [imagePlaceholder, setImagePlaceholder] = useState(false);
+  const local = localStorage.getItem("RiveStreamSettings");
+  const mode = local ? JSON.parse(local).mode : "dark";
   return (
     <Link
       key={data?.id}
@@ -55,7 +57,7 @@ const MovieCardSmall = ({ data, media_type }: any) => {
         {/* react-lazy-load-image-component */}
         <LazyLoadImage
           key={data?.id}
-          src={`${imagePlaceholder ? "/images/logo.png" : data?.poster_path !== null && data?.poster_path !== undefined ? process.env.NEXT_PUBLIC_TMBD_IMAGE_URL + data?.poster_path : "/images/logo.svg"}`}
+          src={`${imagePlaceholder ? (mode === "dark" ? "/images/logoWhite.png" : "/images/logoBlack.png") : data?.poster_path !== null && data?.poster_path !== undefined ? process.env.NEXT_PUBLIC_TMBD_IMAGE_URL + data?.poster_path : mode === "dark" ? "/images/logoWhite.svg" : "/images/logoBlack.svg"}`}
           height="100%"
           width="100%"
           useIntersectionObserver={true}

@@ -3,9 +3,11 @@ import styles from "@/styles/Settings.module.scss";
 import Link from "next/link";
 import { loginUserGoogle, loginUserManual } from "@/Utils/firebaseUser";
 import { useRouter } from "next/navigation";
+import { getSettings } from "@/Utils/settings";
 const LoginPage = () => {
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
+  const mode = getSettings()?.mode;
   const { push } = useRouter();
   const handleFormSubmission = async (e: any) => {
     e.preventDefault();
@@ -22,12 +24,21 @@ const LoginPage = () => {
   return (
     <div className={`${styles.settingsPage} ${styles.authPage}`}>
       <div className={styles.logo}>
-        <img
-          src="/images/logoSq.png"
-          alt="logo"
-          data-tooltip-id="tooltip"
-          data-tooltip-content="Rive"
-        />
+        {mode === "dark" ? (
+          <img
+            src="/images/logoSq.png"
+            alt="logo"
+            data-tooltip-id="tooltip"
+            data-tooltip-content="Rive"
+          />
+        ) : (
+          <img
+            src="/images/logoSq-white.png"
+            alt="logo"
+            data-tooltip-id="tooltip"
+            data-tooltip-content="Rive"
+          />
+        )}
       </div>
       <div className={styles.settings}>
         <h1>Login</h1>

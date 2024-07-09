@@ -51,7 +51,11 @@ const SettingsPage = ({
   return (
     <div className={`${styles.settingsPage} ${styles.authPage}`}>
       <div className={styles.logo}>
-        <img src="/images/logoSq.png" alt="logo" />
+        {mode === "dark" ? (
+          <img src="/images/logoSq.png" alt="logo" />
+        ) : (
+          <img src="/images/logoSq-white.png" alt="logo" />
+        )}
       </div>
       <div className={styles.settings}>
         <h1>Account</h1>
@@ -87,9 +91,6 @@ const SettingsPage = ({
                 handleSelect({ type: "mode", value: e.target.value });
               }}
             >
-              <option value="system" defaultChecked>
-                System
-              </option>
               <option value="light">Light</option>
               <option value="dark">Dark</option>
             </select>
@@ -177,9 +178,9 @@ const SettingsPage = ({
         </div>
         <h1>Links</h1>
         <div className={styles.group}>
-          <Link href={""}>
+          {/* <Link href={""}>
             <FaGithub /> Github
-          </Link>
+          </Link> */}
           <Link href={"/"}>
             <FaGlobe /> Website
           </Link>
